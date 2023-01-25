@@ -43,5 +43,25 @@ stage('SonarQube analysis') {
 
              }
          }
+  stage('Notify') {
+          steps {
+              echo "Notification..."
+              notifyEvents message: 'Build is created with success', token: 'eBhj313rKyK1XRTk5VJuubTmjvJrJ7ej'
+          }
+      }
+    }
+
+
+    post {
+      success {
+          mail to: "ji_abdelaziz@esi.dz",
+          subject: "Build Succeeded",
+          body: "This is an email that informs that the new Build is deployed with success!"
+      }
+      failure {
+          mail to: "jl_ji_abdelaziz@esi.dz",
+          subject: "Build failed",
+          body: "This is an email that informs that the new Build is deployed with failure!"
+      }
 
 }}
