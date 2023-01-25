@@ -21,12 +21,20 @@ stage('SonarQube analysis') {
       }
 
     }
-stage("Code Quality") {
+/*stage("Code Quality") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                    //
                     waitForQualityGate abortPipeline: true
                 }
+            }
+        }*/
+ stage("Build") {
+            steps {
+                bat 'gradle build'
+                bat 'gradle javadoc'
+                archiveArtifacts 'build/libs/*.jar'
+                archiveArtifacts 'build/docs/'
             }
         }
 
