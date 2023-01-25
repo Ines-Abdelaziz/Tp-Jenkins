@@ -3,7 +3,7 @@ pipeline {
   stages {
   stage ('Test') {
   steps {
-  bat 'gradle test'
+  bat 'gradlew test'
    junit 'build/test-results/test/*.xml'
 
      cucumber buildStatus: 'UNSTABLE',
